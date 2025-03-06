@@ -28,15 +28,21 @@ const Predictor = () => {
         thumbs_down: parseFloat(inputs.thumbs_down) || 0,
         stars: parseFloat(inputs.stars) || 0
       };
-
+  
       console.log("Sending Data:", formattedInputs);
-
+  
       const response = await axios.post("http://127.0.0.1:5000/predict", formattedInputs, {
         headers: { "Content-Type": "application/json" }
       });
-
+  
       console.log("Received Response:", response.data);
-      setPrediction(response.data.predicted_score);
+  
+      // Ensure that the response has the 'predicted_popularity_score' field
+      if (response.data && response.data.predicted_popularity_score !== undefined) {
+        setPrediction(`${response.data.predicted_popularity_score} / 1000`); // Append "/ 1000"
+      } else {
+        setError("Error: 'predicted_popularity_score' not found in response.");
+      }
     } catch (error) {
       console.error("Error:", error.response?.data || error.message);
       setError("Failed to fetch prediction. Please try again.");
@@ -46,7 +52,7 @@ const Predictor = () => {
   return (
     <div className="predictor-container">
       <div className="predictor-box">
-        <h2 className="predictor-heading">Predict Recipe Popularity</h2>
+        <h2 className="predictor-heading">Popularity Score</h2> {/* Heading */}
         <form onSubmit={handleSubmit} className="predictor-form">
           {["user_reputation", "reply_count", "thumbs_up", "thumbs_down", "stars"].map((feature) => (
             <div key={feature} className="input-container">
@@ -66,11 +72,10 @@ const Predictor = () => {
             Predict
           </button>
         </form>
-        {error && <p className="result-box">{error}</p>}
-        {prediction !== null && (
-          <div className="result-box">
-            <h3>Predicted Score:</h3>
-            <p>{prediction} / 5</p>
+        {error && <p className="error-message">{error}</p>}
+        {prediction && (
+          <div className="prediction-result">
+            <p>{prediction}</p> {/* Display the score with "/1000" */}
           </div>
         )}
       </div>
