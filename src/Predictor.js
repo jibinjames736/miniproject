@@ -37,11 +37,11 @@ const Predictor = () => {
   
       console.log("Received Response:", response.data);
   
-      // Ensure that the response has the 'predicted_popularity_score' field
+      // Ensure that the response has the 'popularity_score' field
       if (response.data && response.data.predicted_popularity_score !== undefined) {
-        setPrediction(`${response.data.predicted_popularity_score} / 1000`); // Append "/ 1000"
+        setPrediction(`${response.data.predicted_popularity_score} / 5`); // Display score out of 5
       } else {
-        setError("Error: 'predicted_popularity_score' not found in response.");
+        setError("Error: 'popularity_score' not found in response.");
       }
     } catch (error) {
       console.error("Error:", error.response?.data || error.message);
@@ -75,7 +75,7 @@ const Predictor = () => {
         {error && <p className="error-message">{error}</p>}
         {prediction && (
           <div className="prediction-result">
-            <p>{prediction}</p> {/* Display the score with "/1000" */}
+            <p>{prediction}</p> {/* Display the score with "/5" */}
           </div>
         )}
       </div>
