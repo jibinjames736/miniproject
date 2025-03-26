@@ -10,7 +10,11 @@ const Predictor = () => {
     thumbs_down: "",
     stars: ""
   });
+
   const [prediction, setPrediction] = useState(null);
+  const [surpassingCount, setSurpassingCount] = useState(null);
+  const [percentageRank, setPercentageRank] = useState(null);
+  const [popularityData, setPopularityData] = useState(null);
   const [error, setError] = useState(null);
 
   const handleChange = (e) => {
@@ -37,11 +41,13 @@ const Predictor = () => {
 
       console.log("Received Response:", response.data);
 
-      // Ensure that the response has the correct field
-      if (response.data && response.data.predicted_popularity !== undefined) {
-        setPrediction(`${response.data.predicted_popularity} / 5`); // Display score out of 5
+      if (response.data) {
+        setPrediction(`${response.data.predicted_popularity} / 5`);
+        setSurpassingCount(response.data.surpassing_count);
+        setPercentageRank(response.data.percentage_rank);
+        setPopularityData(response.data.popularity_data);
       } else {
-        setError("Error: 'predicted_popularity' not found in response.");
+        setError("Error: Required fields not found in response.");
       }
     } catch (error) {
       console.error("Error:", error.response?.data || error.message);
@@ -52,7 +58,7 @@ const Predictor = () => {
   return (
     <div className="predictor-container">
       <div className="predictor-box">
-        <h2 className="predictor-heading">Popularity Score</h2> {/* Heading */}
+        <h2 className="predictor-heading">Popularity Score</h2> 
         <form onSubmit={handleSubmit} className="predictor-form">
           {["user_reputation", "reply_count", "thumbs_up", "thumbs_down", "stars"].map((feature) => (
             <div key={feature} className="input-container">
@@ -75,7 +81,9 @@ const Predictor = () => {
         {error && <p className="error-message">{error}</p>}
         {prediction && (
           <div className="prediction-result">
-            <p>{prediction}</p> {/* Display the score with "/5" */}
+            <p><strong>Score:</strong> {prediction}</p>
+            {/* <p>📈 {surpassingCount} recipes ({((surpassingCount / popularityData) * 100).toFixed(2)}%) have a popularity score ≥ 4.</p> */}
+            <p>🏆 This recipe ranks in the <em>top {percentageRank?.toFixed(1)}%</em> of all recipes.</p>
           </div>
         )}
       </div>

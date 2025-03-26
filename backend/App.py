@@ -122,7 +122,8 @@ def predict_popularity():
     return jsonify({
             "predicted_popularity": round(normalized_score, 2),
             "surpassing_count": int(surpassing_count),
-            "percentage_rank": round(percentage_rank, 1)
+            "percentage_rank": round(percentage_rank, 1),
+            "popularity_data":int(len(popularity_data))
         })
   except Exception as e:
       
