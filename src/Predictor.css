@@ -72,7 +72,7 @@
   cursor: pointer;
   transition: all 0.3s ease-in-out;
   border: none;
-  margin-bottom: 40px; /* Added extra space below the button */
+  margin-bottom: 25px; /* Added extra space below the button */
 }
 
 .predictor-button:hover {
@@ -81,7 +81,7 @@
 }
 
 .result-box {
-  margin-top: 30px;
+  margin-top: 5px;
   padding: 20px;
   background-color: #d4edda;
   border: 2px solid #28a745;
