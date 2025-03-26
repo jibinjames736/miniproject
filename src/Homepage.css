@@ -5,62 +5,99 @@
     align-items: center;
     justify-content: center;
     height: 100vh;
-    background: linear-gradient(to right, #ff9a9e, #fad0c4);
+    background: linear-gradient(135deg, #ff758c, #ff7eb3, #fad0c4);
     font-family: 'Poppins', sans-serif;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Glassmorphism Card */
+.homepage-card {
+    background: rgba(255, 255, 255, 0.15);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(8px);
+    max-width: 700px;
     text-align: center;
 }
 
+/* Title Styling */
 .homepage-title {
-    font-size: 2.5rem;
+    font-size: 3rem;
     color: #fff;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-    margin-bottom: 10px;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+    margin-bottom: 15px;
 }
 
+/* Description Styling */
 .homepage-description {
-    font-size: 1.2rem;
-    color: #fff;
+    font-size: 1.3rem;
+    color: rgba(255, 255, 255, 0.9);
     max-width: 600px;
     margin-bottom: 30px;
-    opacity: 0.9;
+    line-height: 1.6;
 }
 
+/* Button Container */
 .button-container {
     display: flex;
     gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
+/* General Button Styling */
 .homepage-button {
-    background: #ff6f61;
     border: none;
-    padding: 12px 24px;
+    padding: 14px 28px;
     font-size: 1rem;
     font-weight: bold;
     color: #fff;
-    border-radius: 8px;
+    border-radius: 10px;
     cursor: pointer;
-    transition: transform 0.2s, background 0.3s;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
-.homepage-button:hover {
-    background: #e55b50;
-    transform: scale(1.05);
-}
-
+/* Popularity Button */
 .popularity-button {
-    background: #ffcc29;
-    color: #5a3e02;
+    background: linear-gradient(135deg, #ffcc29, #ffb400);
+    color: #4a3201;
 }
 
 .popularity-button:hover {
-    background: #e5b223;
+    background: linear-gradient(135deg, #ffb400, #e5a600);
+    transform: translateY(-3px);
 }
 
+/* Trend Button */
 .trend-button {
-    background: #6b9dfc;
+    background: linear-gradient(135deg, #6b9dfc, #4b82f2);
     color: #fff;
 }
 
 .trend-button:hover {
-    background: #4b82f2;
+    background: linear-gradient(135deg, #4b82f2, #346bd6);
+    transform: translateY(-3px);
+}
+
+/* Standard Button */
+.homepage-button:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .homepage-title {
+        font-size: 2.5rem;
+    }
+    .homepage-description {
+        font-size: 1.1rem;
+    }
+    .homepage-button {
+        font-size: 0.9rem;
+        padding: 12px 24px;
+    }
 }

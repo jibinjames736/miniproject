@@ -28,20 +28,20 @@ const Predictor = () => {
         thumbs_down: parseFloat(inputs.thumbs_down) || 0,
         stars: parseFloat(inputs.stars) || 0
       };
-  
+
       console.log("Sending Data:", formattedInputs);
-  
+
       const response = await axios.post("http://127.0.0.1:5000/predict", formattedInputs, {
         headers: { "Content-Type": "application/json" }
       });
-  
+
       console.log("Received Response:", response.data);
-  
-      // Ensure that the response has the 'popularity_score' field
-      if (response.data && response.data.predicted_popularity_score !== undefined) {
-        setPrediction(`${response.data.predicted_popularity_score} / 5`); // Display score out of 5
+
+      // Ensure that the response has the correct field
+      if (response.data && response.data.predicted_popularity !== undefined) {
+        setPrediction(`${response.data.predicted_popularity} / 5`); // Display score out of 5
       } else {
-        setError("Error: 'popularity_score' not found in response.");
+        setError("Error: 'predicted_popularity' not found in response.");
       }
     } catch (error) {
       console.error("Error:", error.response?.data || error.message);
