@@ -4,25 +4,28 @@
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  background: linear-gradient(to bottom right, #fffae0, #ffc48c);
+  background: rgba(245, 247, 250, 0.8);
+  backdrop-filter: blur(10px);
   padding: 20px;
 }
 
 .predictor-box {
-  background: white;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-  border-radius: 20px;
-  padding: 50px;
-  width: 100%;
-  max-width: 800px;
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(15px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  border-radius: 15px;
+  padding: 40px;
+  width: 90%;
+  max-width: 750px;
   text-align: center;
 }
 
 .predictor-heading {
-  font-size: 40px;
+  font-size: 36px;
   font-weight: bold;
-  color: #c05621;
-  margin-bottom: 40px;
+  color: #2d3748;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  margin-bottom: 30px;
 }
 
 .predictor-form {
@@ -35,59 +38,61 @@
 .input-container {
   display: flex;
   flex-direction: column;
-  width: 75%;
-  margin-bottom: 20px;
+  width: 80%;
+  margin-bottom: 15px;
 }
 
 .input-label {
-  font-size: 22px;
-  color: #c05621;
+  font-size: 20px;
+  color: #2d3748;
   font-weight: 600;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
 .input-field {
-  border: 2px solid #ddd;
-  border-radius: 10px;
-  padding: 15px;
-  font-size: 22px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 18px;
   text-align: center;
   width: 100%;
   outline: none;
+  background: rgba(255, 255, 255, 0.4);
+  color: #2d3748;
 }
 
 .input-field:focus {
-  border-color: #ff7b00;
-  box-shadow: 0 0 5px rgba(255, 123, 0, 0.5);
+  border-color: #4299e1;
+  box-shadow: 0 0 5px rgba(66, 153, 225, 0.5);
 }
 
 .predictor-button {
-  width: 75%;
-  background-color: #ff7b00;
-  color: white;
-  font-size: 24px;
+  width: 80%;
+  background: linear-gradient(135deg, #4299e1, #2b6cb0);
+  color: #ffffff;
+  font-size: 20px;
   font-weight: bold;
-  padding: 15px;
-  border-radius: 10px;
+  padding: 12px;
+  border-radius: 8px;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
   border: none;
-  margin-bottom: 25px; /* Added extra space below the button */
+  margin-bottom: 20px;
 }
 
 .predictor-button:hover {
-  background-color: #e66a00;
+  background: linear-gradient(135deg, #2b6cb0, #1a4368);
   transform: scale(1.05);
 }
 
 .result-box {
   margin-top: 5px;
-  padding: 20px;
-  background-color: #d4edda;
-  border: 2px solid #28a745;
-  color: #155724;
-  font-size: 22px;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  color: #2d3748;
+  font-size: 18px;
   font-weight: bold;
-  border-radius: 10px;
-  width: 75%;
+  border-radius: 8px;
+  width: 80%;
 }
