@@ -89,11 +89,12 @@
 .result-box {
   margin-top: 5px;
   padding: 15px;
-  background: rgba(255, 255, 255, 0.4);
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: #f8f9fa; /* Off-white background */
+  border: 1px solid rgba(0, 0, 0, 0.1); /* Light border for contrast */
   color: #2d3748;
   font-size: 18px;
   font-weight: bold;
   border-radius: 8px;
   width: 80%;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05); /* Subtle depth */
 }
