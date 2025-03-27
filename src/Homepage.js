@@ -23,12 +23,6 @@ export default function HomePage() {
                     Popularity Score
                 </button>
                 
-                <button 
-                    onClick={() => navigate('/trend-analyzer')}
-                    className="homepage-button trend-button"
-                >
-                    Trend Analyzer
-                </button>
             </div>
         </div>
     );

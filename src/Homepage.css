@@ -5,7 +5,7 @@
     align-items: center;
     justify-content: center;
     height: 100vh;
-    background: linear-gradient(135deg, #ff758c, #ff7eb3, #fad0c4);
+    background: url('./healthy1.jpg') no-repeat center center/cover; /* Set background image */
     font-family: 'Poppins', sans-serif;
     text-align: center;
     padding: 20px;
@@ -68,17 +68,6 @@
 
 .popularity-button:hover {
     background: linear-gradient(135deg, #ffb400, #e5a600);
-    transform: translateY(-3px);
-}
-
-/* Trend Button */
-.trend-button {
-    background: linear-gradient(135deg, #6b9dfc, #4b82f2);
-    color: #fff;
-}
-
-.trend-button:hover {
-    background: linear-gradient(135deg, #4b82f2, #346bd6);
     transform: translateY(-3px);
 }
 
