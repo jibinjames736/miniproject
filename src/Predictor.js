@@ -1,14 +1,12 @@
 import React, { useState } from "react";
 import axios from "axios";
-import "./Predictor.css"; // Import the CSS file
+import "./Predictor.css"; 
 
 const Predictor = () => {
   const [inputs, setInputs] = useState({
-    user_reputation: "",
-    reply_count: "",
-    thumbs_up: "",
-    thumbs_down: "",
-    stars: ""
+    recipe_name: "",
+    cooking_time: "",
+    calories: ""
   });
 
   const [prediction, setPrediction] = useState(null);
@@ -26,11 +24,9 @@ const Predictor = () => {
     setError(null);
     try {
       const formattedInputs = {
-        user_reputation: parseFloat(inputs.user_reputation) || 0,
-        reply_count: parseFloat(inputs.reply_count) || 0,
-        thumbs_up: parseFloat(inputs.thumbs_up) || 0,
-        thumbs_down: parseFloat(inputs.thumbs_down) || 0,
-        stars: parseFloat(inputs.stars) || 0
+        recipe_name: inputs.recipe_name,
+        cooking_time: parseFloat(inputs.cooking_time) || 0,
+        calories: parseFloat(inputs.calories) || 0
       };
 
       console.log("Sending Data:", formattedInputs);
@@ -58,34 +54,31 @@ const Predictor = () => {
   return (
     <div className="predictor-container">
       <div className="predictor-box">
-        <h2 className="predictor-heading">Popularity Score</h2> 
+        <h2 className="predictor-heading">Popularity Score</h2>
         <form onSubmit={handleSubmit} className="predictor-form">
-          {["user_reputation", "reply_count", "thumbs_up", "thumbs_down", "stars"].map((feature) => (
-            <div key={feature} className="input-container">
-              <label className="input-label">{feature.replace("_", " ")}:</label>
+          {[
+            { name: "recipe_name", type: "text", label: "Recipe Name" },
+            { name: "cooking_time", type: "number", label: "Cooking Time (mins)" },
+            { name: "calories", type: "number", label: "Calories" }
+          ].map((field) => (
+            <div key={field.name} className="input-container">
+              <label className="input-label">{field.label}:</label>
               <input
-                type="number"
-                name={feature}
-                value={inputs[feature]}
+                type={field.type}
+                name={field.name}
+                value={inputs[field.name]}
                 onChange={handleChange}
                 required
-                step="any"
                 className="input-field"
               />
             </div>
           ))}
-          <button type="submit" className="predictor-button">
-            Predict
-          </button>
+          <button type="submit" className="predictor-button">Predict</button>
         </form>
         {error && <p className="error-message">{error}</p>}
-        {prediction && (
-          <div className="prediction-result">
-            <p><strong>Score:</strong> {prediction}</p>
-            {/* <p>📈 {surpassingCount} recipes ({((surpassingCount / popularityData) * 100).toFixed(2)}%) have a popularity score ≥ 4.</p> */}
-            <p>🏆 This recipe ranks in the <em>top {percentageRank?.toFixed(1)}%</em> of all recipes.</p>
-          </div>
-        )}
+        {prediction && <p><strong>Score:</strong> {prediction}</p>}
+        {/* <p>📈 {surpassingCount} recipes ({((surpassingCount / popularityData) * 100).toFixed(2)}%) have a popularity score ≥ 4.</p> */}
+        {/*<p>🏆 This recipe ranks in the <em>top {percentageRank?.toFixed(1)}%</em> of all recipes.</p>*/}
       </div>
     </div>
   );
