@@ -98,3 +98,10 @@
   width: 80%;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05); /* Subtle depth */
 }
+
+/* Remove background color specifically for the recipe name input */
+.input-field[name="recipe_name"] {
+  background: none;
+}
+
+

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import "./Predictor.css"; 
+import "./Predictor.css";
 
 const Predictor = () => {
   const [inputs, setInputs] = useState({
@@ -10,9 +10,8 @@ const Predictor = () => {
   });
 
   const [prediction, setPrediction] = useState(null);
-  const [surpassingCount, setSurpassingCount] = useState(null);
   const [percentageRank, setPercentageRank] = useState(null);
-  const [popularityData, setPopularityData] = useState(null);
+  const [showRank, setShowRank] = useState(false); // State to control when to show rank
   const [error, setError] = useState(null);
 
   const handleChange = (e) => {
@@ -22,6 +21,8 @@ const Predictor = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError(null);
+    setShowRank(false); // Hide rank before submitting
+
     try {
       const formattedInputs = {
         recipe_name: inputs.recipe_name,
@@ -39,9 +40,8 @@ const Predictor = () => {
 
       if (response.data) {
         setPrediction(`${response.data.predicted_popularity} / 5`);
-        setSurpassingCount(response.data.surpassing_count);
-        setPercentageRank(response.data.percentage_rank);
-        setPopularityData(response.data.popularity_data);
+        setPercentageRank(response.data.top_percentage);
+        setShowRank(true); // Show rank only after getting response
       } else {
         setError("Error: Required fields not found in response.");
       }
@@ -56,8 +56,7 @@ const Predictor = () => {
       <div className="predictor-box">
         <h2 className="predictor-heading">Popularity Score</h2>
         <form onSubmit={handleSubmit} className="predictor-form">
-          {[
-            { name: "recipe_name", type: "text", label: "Recipe Name" },
+          {[{ name: "recipe_name", type: "text", label: "Recipe Name" },
             { name: "cooking_time", type: "number", label: "Cooking Time (mins)" },
             { name: "calories", type: "number", label: "Calories" }
           ].map((field) => (
@@ -77,8 +76,9 @@ const Predictor = () => {
         </form>
         {error && <p className="error-message">{error}</p>}
         {prediction && <p><strong>Score:</strong> {prediction}</p>}
-        {/* <p>📈 {surpassingCount} recipes ({((surpassingCount / popularityData) * 100).toFixed(2)}%) have a popularity score ≥ 4.</p> */}
-        {/*<p>🏆 This recipe ranks in the <em>top {percentageRank?.toFixed(1)}%</em> of all recipes.</p>*/}
+        {showRank && percentageRank !== null && (
+          <p>🏆 This recipe ranks in the <em>top {percentageRank.toFixed(1)}%</em> of all recipes.</p>
+        )}
       </div>
     </div>
   );

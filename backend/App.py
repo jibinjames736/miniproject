@@ -110,8 +110,13 @@ def predict_popularity():
         prediction_scaled = model.predict(input_scaled)
         prediction = np.clip(prediction_scaled, 0, 5)[0]
 
+        # Calculate percentile rank and top percentage
+        percentile_rank = (np.sum(y_scaled <= prediction) / len(y_scaled)) * 100
+        top_percentage = 100 - percentile_rank  # Now correctly represents top %
+
         return jsonify({
-            "predicted_popularity": round(float(prediction), 2)
+            "predicted_popularity": round(float(prediction), 2),
+            "top_percentage": round(top_percentage, 2)
         })
     except Exception as e:
         return jsonify({"error": str(e)}), 500
